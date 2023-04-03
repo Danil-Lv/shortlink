@@ -24,7 +24,7 @@ class LinkCreateView(APIView):
         if obj:
             return Response({'post': LinkSerializer(obj.values()[0]).data})
         serializer = LinkSerializer(data=request.data)
-        serializer.is_valid()
+        serializer.is_valid(raise_exception=True)
         serializer.save()
 
         return Response({'post': serializer.data})

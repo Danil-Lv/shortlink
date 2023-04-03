@@ -1,0 +1,26 @@
+version: '3.7'
+
+services:
+  db_mongo:
+    container_name: db_mongo
+    restart: always
+    image: mongo:6.0.5
+    ports:
+      - 27017:27017
+    volumes:
+      - mongo-volume:/data/db
+
+
+  web:
+    container_name: web
+    build: .
+    command: python /usr/src/shortlink/manage.py runserver 0.0.0.0:8000
+    ports:
+      - 8000:8000
+    volumes:
+      - .:/usr/src/shortlink
+    depends_on:
+      - db_mongo
+
+volumes:
+  mongo-volume:
