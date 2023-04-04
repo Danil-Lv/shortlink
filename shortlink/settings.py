@@ -71,7 +71,6 @@ DATABASES = {
         'NAME': 'shortlink_db',
         "CLIENT": {
             "host": "mongodb://db_mongo:27017/",
-
         }
     }
 }
